@@ -1,0 +1,18 @@
+﻿@model IEnumerable<HotMeal>
+
+<h2>Hot meals</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Portion Size</th>
+        <th>Price</th>
+    </tr>
+    @foreach (var fastfood in Model)
+    {
+        <tr>
+            <td>@fastfood.Name</td>
+            <td>@fastfood.PortionSize</td>
+            <td>@fastfood.Price manat</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Drink>
+
+<h2>Drinks</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Volume</th>
+        <th>Price</th>
+    </tr>
+    @foreach (var drink in Model)
+    {
+        <tr>
+            <td>@drink.Name</td>
+            <td>@drink.Volume</td>
+            <td>@drink.Price manat</td>
+        </tr>
+    }
+</table>

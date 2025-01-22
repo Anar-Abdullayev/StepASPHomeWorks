@@ -1,0 +1,60 @@
+﻿@using System.Reflection
+@model MenuViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+
+}
+
+<div class="text-center">
+    @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
+    <h2>Drinks</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Volume</th>
+            <th>Price</th>
+        </tr>
+        @foreach(var drink in Model.Drinks){
+            <tr>
+                <td>@drink.Name</td>
+                <td>@drink.Volume</td>
+                <td>@drink.Price manat</td>
+            </tr>
+        }
+    </table>
+    <h2>Fast foods</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Portion Size</th>
+            <th>Price</th>
+            <th>Calories</th>
+        </tr>
+        @foreach (var fastfood in Model.FastFoods)
+        {
+            <tr>
+                <td>@fastfood.Name</td>
+                <td>@fastfood.PortionSize</td>
+                <td>@fastfood.Calories</td>
+                <td>@fastfood.Price manat</td>
+            </tr>
+        }
+    </table>
+    <h2>Hot meals</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Portion Size</th>
+            <th>Price</th>
+        </tr>
+        @foreach (var hotmeal in Model.HotMeals)
+        {
+            <tr>
+                <td>@hotmeal.Name</td>
+                <td>@hotmeal.PortionSize</td>
+                <td>@hotmeal.Price manat</td>
+            </tr>
+        }
+    </table>
+</div>
