@@ -1,0 +1,25 @@
+﻿@model ProductAddViewModel
+
+<section class="bg-light">
+    <h2 class="text-center">Add new product</h2>
+    <form asp-controller="Products" asp-action="Add" method="post">
+        <section>
+            <label>Name</label>
+            <input asp-for="Product.Name" />
+            <span style="color:red" asp-validation-for="Product.Name"></span>
+        </section>
+        <section>
+            <label>Description</label>
+            <input asp-for="Product.Description" />
+        </section>
+        <section>
+            <label>Price</label>
+            <input asp-for="Product.Price" />
+        </section>
+        <section>
+            <label>Discount</label>
+            <input asp-for="Product.Discount" />
+        </section>
+        <button type="submit" class="btn-success">Add</button>
+    </form>
+</section>

@@ -1,0 +1,26 @@
+﻿@model ProductUpdateViewModel
+
+<section class="bg-light">
+    <h2 class="text-center">Update page for @Model.Product.Name</h2>
+    <form asp-controller="Products" asp-action="Update" method="post">
+        <input asp-for="Product.Id" style="display: none" />
+        <section>
+            <label>Name</label>
+            <input asp-for="Product.Name" />
+            <span style="color:red" asp-validation-for="Product.Name"></span>
+        </section>
+        <section>
+            <label>Description</label>
+            <input asp-for="Product.Description" />
+        </section>
+        <section>
+            <label>Price</label>
+            <input asp-for="Product.Price" />
+        </section>
+        <section>
+            <label>Discount</label>
+            <input asp-for="Product.Discount" />
+        </section>
+        <button type="submit" class="btn-success">Update</button>
+    </form>
+</section>
