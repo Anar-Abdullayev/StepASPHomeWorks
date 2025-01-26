@@ -1,7 +1,59 @@
 ﻿@model IEnumerable<Product>
 
-
-<h1 style="text-align: center">Products</h1>
-<div class="container bg-info">
-
+<div class="container my-4">
+    <h1 class="text-center mb-4">Product List</h1>
+    <div class="row g-4">
+        @foreach (var product in Model)
+        {
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card product-card h-100">
+                    <img src="@Url.Content(product.ImageLink)" class="card-img-top" alt="@product.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p>
+                            <span class="card-price">$@product.Price</span>
+                            @if (product.Discount > 0)
+                            {
+                                <span class="card-discount ms-2">$@product.Discount</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
+
+<style>
+    .product-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+        cursor: pointer;
+    }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+    .card-body {
+        text-align: center;
+    }
+
+    .card-price {
+        font-weight: bold;
+        color: #28a745;
+    }
+
+    .card-discount {
+        text-decoration: line-through;
+        color: #dc3545;
+    }
+</style>
