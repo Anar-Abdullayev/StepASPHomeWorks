@@ -1,0 +1,42 @@
+﻿@model ProductAddViewModel
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Add New Product</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Products" asp-action="Add" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label">Name</label>
+                            <input asp-for="Name" type="text" class="form-control" required>
+                            <span asp-validation-for="Name"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Price" class="form-label">Price</label>
+                            <input asp-for="Price" type="number" class="form-control" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Discount" class="form-label">Discount</label>
+                            <input asp-for="Discount" type="number" class="form-control" step="0.01" min="0" max="100">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="File" class="form-label">Image File</label>
+                            <input asp-for="File" type="file" class="form-control" accept="image/*" required>
+                            <span asp-validation-for="File"></span>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Add Product</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

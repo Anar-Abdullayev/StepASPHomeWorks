@@ -4,6 +4,7 @@
     <h2 class="text-center">Update page for @Model.Product.Name</h2>
     <form asp-controller="Products" asp-action="Update" method="post">
         <input asp-for="Product.Id" style="display: none" />
+        <input type="hidden" name="_method" value="PUT" />
         <section>
             <label>Name</label>
             <input asp-for="Product.Name" />
