@@ -1,0 +1,95 @@
+﻿@model ProductUpdateViewModel
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Update Product</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Products" asp-action="Update" method="post" enctype="multipart/form-data">
+                        <!-- Hidden field to store Product ID -->
+                        <input asp-for="Product.Id" type="hidden" />
+
+                        <!-- Product Name -->
+                        <div class="mb-3">
+                            <label asp-for="Product.Name" class="form-label">Name</label>
+                            <input asp-for="Product.Name" type="text" class="form-control" required>
+                            <span asp-validation-for="Product.Name" class="text-danger"></span>
+                        </div>
+
+                        <!-- Product Description -->
+                        <div class="mb-3">
+                            <label asp-for="Product.Description" class="form-label">Description</label>
+                            <textarea asp-for="Product.Description" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <!-- Product Price -->
+                        <div class="mb-3">
+                            <label asp-for="Product.Price" class="form-label">Price</label>
+                            <input asp-for="Product.Price" type="number" class="form-control" step="0.01" required>
+                        </div>
+
+                        <!-- Product Discount -->
+                        <div class="mb-3">
+                            <label asp-for="Product.Discount" class="form-label">Discount</label>
+                            <input asp-for="Product.Discount" type="number" class="form-control" step="0.01" min="0" max="100">
+                        </div>
+
+                        <!-- Existing Image -->
+                        <div class="mb-3 text-center">
+                            <label class="form-label">Current Image</label>
+                            <div>
+                                <input asp-for="Product.ImageLink" type="hidden" />
+                                <img src="@Url.Content(Model.Product.ImageLink)" id="currentImage" alt="Current Product Image" class="img-thumbnail" style="max-height: 200px;">
+                            </div>
+                        </div>
+
+                        <!-- Upload New Image -->
+                        <div class="mb-3">
+                            <label asp-for="File" class="form-label">Upload New Image</label>
+                            <input asp-for="File" type="file" class="form-control" accept="image/*" id="imageUpload">
+                            <span asp-validation-for="File" class="text-danger"></span>
+                        </div>
+
+                        <!-- Image Preview -->
+                        <div class="mb-3 text-center">
+                            <label class="form-label">New Image Preview</label>
+                            <div>
+                                <img id="imagePreview" class="img-thumbnail" style="max-height: 200px;" alt="Preview">
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Update Product</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript to handle image preview
+    const imageUpload = document.getElementById("imageUpload");
+    const imagePreview = document.getElementById("imagePreview");
+    const currentImage = document.getElementById("currentImage");
+    imagePreview.src = currentImage.src;
+
+    imageUpload.addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result; // Set the preview image source
+            };
+            reader.readAsDataURL(file);
+        } else {
+            // Reset preview to the current image if no file is selected
+            imagePreview.src = currentImage.src;
+        }
+    });
+</script>

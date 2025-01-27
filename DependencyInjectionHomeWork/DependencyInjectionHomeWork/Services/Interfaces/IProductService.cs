@@ -8,5 +8,6 @@ namespace DependencyInjectionHomeWork.Services.Interfaces
         Task<List<Product>?> GetAllAsync();
         Task<Product?> GetByIdAsync(int id);
         Task Add(ProductAddViewModel viewModel); 
+        Task Update(ProductUpdateViewModel viewModel);
     }
 }

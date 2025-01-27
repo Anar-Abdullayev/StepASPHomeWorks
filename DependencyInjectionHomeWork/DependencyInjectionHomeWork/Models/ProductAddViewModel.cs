@@ -14,6 +14,10 @@ namespace DependencyInjectionHomeWork.Models
         public IFormFile File { get; set; }
     }
     
+
+
+
+
     public static class ProductAddExtentionMethods
     {
         public static Product ToProduct(this ProductAddViewModel viewModel)

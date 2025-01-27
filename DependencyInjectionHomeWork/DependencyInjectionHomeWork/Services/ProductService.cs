@@ -6,26 +6,15 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace DependencyInjectionHomeWork.Services
 {
-    public class ProductService(IProductRepository productRepository, IWebHostEnvironment webHostEnvironment) : IProductService
+    public class ProductService(IProductRepository productRepository, IWebHostEnvironment webHostEnvironment, IConfiguration configuration) : IProductService
     {
         public async Task Add(ProductAddViewModel viewModel)
         {
-            var imageUploadFolderPath = Path.Combine(webHostEnvironment.WebRootPath, "images");
-            
-            if (!Directory.Exists(imageUploadFolderPath))
-                Directory.CreateDirectory(imageUploadFolderPath);
-
-            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(viewModel.File.FileName);
-            string filePath = Path.Combine(imageUploadFolderPath, fileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await viewModel.File.CopyToAsync(stream);
-            }
+            string fileName = await UploadImageToRoot(viewModel.File);
 
             var product = viewModel.ToProduct();
 
-            product.ImageLink = @"\images\"+fileName;
+            product.ImageLink = configuration["ImageSettings:BaseStoreUrl"] +fileName;
             await productRepository.AddProductAsync(product);
         }
 
@@ -39,6 +28,35 @@ namespace DependencyInjectionHomeWork.Services
         {
             var product = await productRepository.GetByIdAsync(id);
             return product;
+        }
+
+        public async Task Update(ProductUpdateViewModel viewModel)
+        {
+            if (viewModel.File is not null)
+            {
+                var fileName = await UploadImageToRoot(viewModel.File);
+                viewModel.Product.ImageLink = configuration["ImageSettings:BaseStoreUrl"] + fileName;
+            }
+
+            await productRepository.UpdateProductAsync(viewModel.Product);
+        }
+
+        private async Task<string> UploadImageToRoot(IFormFile formFile)
+        {
+            var imageUploadFolderPath = Path.Combine(webHostEnvironment.WebRootPath, "images");
+
+            if (!Directory.Exists(imageUploadFolderPath))
+                Directory.CreateDirectory(imageUploadFolderPath);
+
+            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(formFile.FileName);
+            string filePath = Path.Combine(imageUploadFolderPath, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await formFile.CopyToAsync(stream);
+            }
+
+            return fileName;
         }
     }
 }

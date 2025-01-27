@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Product>
 
+
 <div class="container my-4">
     <h1 class="text-center mb-4">Product List</h1>
     <div class="row g-4">
@@ -7,17 +8,28 @@
         {
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card product-card h-100">
+                    @if (product.Discount > 0)
+                    {
+                        <div class="discount">@product.Discount.ToString("F0") %</div>
+                    }
                     <img src="@Url.Content(product.ImageLink)" class="card-img-top" alt="@product.Name">
                     <div class="card-body">
                         <h5 class="card-title">@product.Name</h5>
                         <p class="card-text">@product.Description</p>
                         <p>
-                            <span class="card-price">$@product.Price</span>
+                            @{
+                                var salePrice = product.Price - (product.Price * product.Discount / 100);
+                            }
+                            <span class="card-price">@salePrice.ToString("F2") AZN</span>
                             @if (product.Discount > 0)
                             {
-                                <span class="card-discount ms-2">$@product.Discount</span>
+                                <span class="card-discount ms-2">@product.Price.ToString("F2") AZN</span>
                             }
                         </p>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-controller="Products" asp-action="Update" asp-route-id="@product.Id" class="btn btn-success">Update</a>
+                        <a asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>
@@ -26,12 +38,14 @@
 </div>
 
 <style>
+
     .product-card {
         border: 1px solid #ddd;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: transform 0.2s ease;
         cursor: pointer;
+        position: relative;
     }
 
         .product-card:hover {
@@ -39,6 +53,9 @@
         }
 
         .product-card img {
+            height: 200px; /* Set a fixed height for all images */
+            width: 100%; /* Ensure images span the full width of the card */
+            object-fit: cover; /* Ensures images are cropped proportionally */
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
         }
@@ -55,5 +72,24 @@
     .card-discount {
         text-decoration: line-through;
         color: #dc3545;
+    }
+
+    .discount {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #ff4d4d;
+        color: #fff;
+        font-size: 15px;
+        font-weight: bold;
+        padding: 10px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transform: rotate(-30deg);
     }
 </style>
