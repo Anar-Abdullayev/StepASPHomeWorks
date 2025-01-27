@@ -18,6 +18,18 @@ namespace DependencyInjectionHomeWork.Services
             await productRepository.AddProductAsync(product);
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var product = await productRepository.GetByIdAsync(id);
+            if (product is null)
+                return;
+
+            await productRepository.DeleteProductAsync(id);
+            string imagePath = webHostEnvironment.WebRootPath + product.ImageLink;
+            if (File.Exists(imagePath))
+                File.Delete(imagePath);
+        }
+
         public async Task<List<Product>?> GetAllAsync()
         {
             var products = await productRepository.GetAllAsync();
@@ -35,6 +47,9 @@ namespace DependencyInjectionHomeWork.Services
             if (viewModel.File is not null)
             {
                 var fileName = await UploadImageToRoot(viewModel.File);
+                string imagePath = webHostEnvironment.WebRootPath+viewModel.Product.ImageLink;
+                if (File.Exists(imagePath))
+                    File.Delete(imagePath);
                 viewModel.Product.ImageLink = configuration["ImageSettings:BaseStoreUrl"] + fileName;
             }
 

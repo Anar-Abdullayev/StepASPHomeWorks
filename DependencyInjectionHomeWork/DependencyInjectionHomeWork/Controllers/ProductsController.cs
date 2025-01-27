@@ -52,5 +52,11 @@ namespace DependencyInjectionHomeWork.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await productService.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
