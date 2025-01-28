@@ -1,0 +1,23 @@
+﻿@model ProductCategoryViewModel
+
+<h1>Products</h1>
+
+@if(Model.Products is not null){
+    @foreach (var product in Model.Products)
+    {
+        <h2>Name: @product.Name</h2>
+        <h2>Price: @product.Price$</h2>
+    }
+}
+
+<hr />
+
+@* <h1>Categories</h1>
+
+@if (Model.Categories is not null)
+{
+    @foreach (var category in Model.Categories)
+    {
+        <h2>Name: @category.Name</h2>
+    }
+} *@
