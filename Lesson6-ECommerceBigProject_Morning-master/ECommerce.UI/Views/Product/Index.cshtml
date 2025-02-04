@@ -1,0 +1,59 @@
+﻿@model ProductListViewModel
+
+@if (Model.Products is null || Model.Products.Count == 0)
+{
+    <span class="alert alert-danger">No products exist</span>
+}
+else
+{
+    <a class="btn btn-primary @(Model.AtoZ is not null ? "active" : "")"
+       href="/product/index?page=1&category=@Model.CurrentCategory&az=@(Model.AtoZ == true ? false : true)">
+        A-Z
+    </a>
+    <a class="btn btn-primary @(Model.HigherToLower is not null ? "active" : "")"
+       href="/product/index?page=1&category=@Model.CurrentCategory&higherToLower=@(Model.HigherToLower == true ? false : true)">
+        Higher to Lower
+    </a>
+    <a class="btn btn-primary"
+       href="/product/index?page=1&category=@Model.CurrentCategory">
+        Reset sort
+    </a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Unit Price</th>
+                <th>Units in Stock</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>
+                        @product.ProductName
+                    </td>
+                    <td>
+                        @product.UnitPrice
+                    </td>
+                    <td>
+                        @product.UnitsInStock
+                    </td>
+                    <td>
+                        <a class="btn btn-xs btn-success">Add To Cart</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <product-list-pager current-page="@Model.CurrentPage"
+                        page-count="@Model.PageCount"
+                        page-size="@Model.PageSize"
+                        current-category="@Model.CurrentCategory"
+                        sort-az="@Model.AtoZ"
+                        sort-higherToLower="@Model.HigherToLower"
+    >
+
+    </product-list-pager>
+}
