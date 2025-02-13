@@ -1,5 +1,7 @@
 ﻿@model ProductListViewModel
 
+
+<a asp-controller="Product" asp-action="Index" asp-route-page="1" >Test</a>
 @if (Model.Products == null || Model.Products.Count == 0)
 {
     <span class="alert alert-danger">No Product exist</span>
