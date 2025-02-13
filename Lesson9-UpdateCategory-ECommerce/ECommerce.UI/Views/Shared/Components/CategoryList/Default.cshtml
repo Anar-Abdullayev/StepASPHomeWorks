@@ -1,0 +1,111 @@
+﻿@model CategoryListViewModel
+
+@{
+    var controller = Model.isAdmin ? "admin" : "product";
+}
+<section class="list-group">
+
+    @foreach (var item in Model.Categories)
+    {
+        var css = "list-group-item";
+        @if (item.CategoryId == Model.CurrentCategory)
+        {
+            css += " active";
+        }
+        <div style="display:flex;align-items:center">
+
+            <a id="link-@item.CategoryId" href="/@controller/index?category=@item.CategoryId"
+               class="@css" style="cursor:pointer;">@item.CategoryName</a>
+            @if (Model.isAdmin)
+            {
+                <input class="form-control" id="control-@item.CategoryId" style="display:none" />
+                <i id="@item.CategoryId" onclick="SetEdit(id)" class="fa-solid fa-pen-to-square"></i>
+                <div id="block-@item.CategoryId" style="display:none;align-items:center;mx-3">
+                    <a onclick="SaveCategory(@item.CategoryId)"><i class="fa-solid fa-circle-check"></i></a>
+                    <a onclick="SetEdit(@item.CategoryId)"><i class="fa-solid fa-square-xmark"></i></a>
+                </div>
+            }
+        </div>
+    }
+    @if (Model.isAdmin)
+    {
+        <div class="mt-5">
+            <input class="form-control" id="control-add" />
+            <a class="btn btn-primary mt-1" onclick="AddCategory()">Add category</a>
+        </div>
+    }
+</section>
+
+
+@if (Model.isAdmin)
+{
+    <script>
+        function SetEdit(id) {
+
+            const editElement = document.getElementById(id);
+            editElement.classList.toggle('d-none');
+            const blockElement = document.getElementById("block-" + id);
+            blockElement.classList.toggle('d-flex');
+            const linkElement = document.getElementById("link-" + id);
+            linkElement.classList.toggle('d-none');
+            const controlElement = document.getElementById("control-" + id);
+            controlElement.classList.toggle('d-inline-block');
+            controlElement.value = linkElement.innerHTML;
+        }
+        function SaveCategory(id){
+            console.log('Save'+id);
+            const controlElement = document.getElementById("control-" + id);
+            const newName = controlElement.value
+            console.log(controlElement)
+            console.log(newName)
+            fetch(`/Admin/UpdateCategory`, {
+                method: "POST",
+                headers:{
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    CategoryId: id,
+                    CategoryNewName: newName
+                })
+            })
+            .then(res => {
+                console.log(res)
+                return res.json();
+            })
+            .then(data => {
+                const apiResult = JSON.parse(data);
+                if (apiResult.status === 'Succeed')
+                    window.location.reload()
+                console.log(apiResult.status)
+            })
+            .catch(err => console.log(err))
+        }
+        function AddCategory(){
+            console.log('AddCategory started to work');
+            const controlElement = document.getElementById("control-add");
+            const newCategoryName = controlElement.value
+            console.log(controlElement)
+            console.log(newCategoryName)
+            fetch(`/Admin/AddCategory`, {
+                method: "POST",
+                headers:{
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    CategoryName: newCategoryName,
+                })
+            })
+            .then(res=> res.json())
+            .then(data => {
+                apiRes = JSON.parse(data)
+                console.log(apiRes)
+                if (apiRes.status === 'Succeed'){
+                    window.location.reload()
+                }else{
+                    console.log(apiRes.status)
+                }
+            })
+            .catch(err => console.log(err))
+        }
+    </script>
+}

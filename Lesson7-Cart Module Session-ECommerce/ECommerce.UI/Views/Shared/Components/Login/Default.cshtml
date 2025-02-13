@@ -1,0 +1,11 @@
+﻿@model string
+
+@if(!string.IsNullOrEmpty(Model)){
+    <div class="d-flex align-items-center">
+        <p class="lh-lg mb-0 me-2">Welcome, @Model</p>
+        <a asp-controller="Account" asp-action="Logout" class="btn btn-info">Logout</a>
+    </div>
+}else
+{
+    <a asp-controller="Account" asp-action="Login" class="btn btn-info">Login</a>
+}
