@@ -1,0 +1,175 @@
+1. ASP.NET Core Web API nədir?
+a) Yalnız HTML səhifələri göstərən framework
+b) RESTful API-lərin yaradılması üçün platforma +
+c) Yalnız Windows OS üçün nəzərdə tutulmuş API
+d) Yalnız mobil tətbiqlər üçün istifadə olunan sistem
+
+
+2. ASP.NET Core MVC hansı pattern-dən istifadə edir?
+a) Singleton
+b) Factory
+c) MVC (Model-View-Controller) +
+d) Observer
+
+
+3. ASP.NET Core-da Middleware nədir?
+a) Tətbiqin giriş nöqtəsidir
+b) HTTP sorğularını idarə edən və işləyən komponentdir +
+c) Yalnız verilənlər bazası ilə işləmək üçün istifadə olunur
+d) Yalnız səhvləri idarə etmək üçün istifadə olunur
+
+
+4. ASP.NET Core-da app.UseRouting() metodu nə üçün istifadə olunur?
+a) Middleware-ləri əlavə etmək üçün
+b) Route-ları müəyyənləşdirmək üçün +
+c) Controller-ləri qeydiyyatdan keçirmək üçün
+d) Verilənlər bazasına qoşulmaq üçün
+
+
+5. ASP.NET Core Web API-də HttpGet atributu nə edir?
+a) API-yə GET sorğularını yönləndirir +
+b) POST sorğularını idarə edir
+c) Middleware-ləri işə salır
+d) Controller-ləri qeydiyyatdan keçirmək üçün istifadə olunur
+
+
+6. Dependency Injection (DI) nə üçündür?
+a) Controller-ləri idarə etmək üçün 
+b) Kodun test edilə bilməsini və genişləndirilə bilməsini asanlaşdırmaq üçün +
+c) Yalnız verilənlər bazası ilə işləmək üçün
+d) Model-ləri yaratmaq üçün
+
+
+7. appsettings.json faylı nə üçündür?
+a) Tətbiq üçün konfiqurasiya parametrlərini saxlamaq üçün +
+b) Model-ləri müəyyən etmək üçün
+c) Middleware-ləri idarə etmək üçün
+d) Yalnız verilənlər bazası əlaqələri üçün
+
+
+
+8. ASP.NET Core-da IActionResult nədir?
+a) HTTP cavablarını idarə etmək üçün interfeys +
+b) Middleware komponenti
+c) Yalnız MVC tətbiqlərində istifadə olunur
+d) Yalnız verilənlər bazası ilə işləyir
+
+
+
+9. Startup.cs faylı nə üçündür?
+a) Yalnız verilənlər bazası ilə işləmək üçün
+b) Proqramın əsas konfiqurasiyasını təyin etmək üçün +
+c) Model-ləri yaratmaq üçün
+d) View-ləri idarə etmək üçün
+
+
+
+10. ASP.NET Core Web API-də FromBody atributu nə üçündür?
+a) Query string-dən məlumat almaq üçün
+b) HTTP sorğusunun body hissəsindən məlumat almaq üçün +
+c) Route parametrlərini idarə etmək üçün
+d) Middleware-ləri idarə etmək üçün
+
+
+
+11. DbContext nədir?
+a) API sorğularını idarə edən sinifdir
+b) ASP.NET Core MVC-də View-ləri idarə edən sistemdir
+c) Entity Framework Core-da verilənlər bazası ilə işləmək üçün istifadə olunan sinifdir +
+d) Yalnız Web API-də istifadə olunur
+
+
+
+12. ModelState.IsValid nə üçün istifadə olunur?
+a) Model-in düzgünlüyünü yoxlamaq üçün +
+b) Controller-ləri yaratmaq üçün
+c) Verilənlər bazasına sorğu göndərmək üçün
+d) Middleware-ləri qeydiyyatdan keçirmək üçün
+
+
+
+13. ASP.NET Core-da app.UseEndpoints() metodu nə edir?
+a) Middleware-ləri qeydiyyatdan keçirmək üçün
+b) Routing üçün endpoint-ləri təyin edir +
+c) Controller-ləri qeydiyyatdan keçirmək üçün
+d) Yalnız verilənlər bazası əlaqələri üçün istifadə olunur
+
+
+
+14. ConfigureServices metodu nə edir?
+a) Middleware-ləri qeydiyyatdan keçirmək üçün istifadə olunur
+b) Xidmətləri (Services) qeydiyyatdan keçirmək üçün istifadə olunur +
+c) Routing konfiqurasiyasını təyin edir
+d) Yalnız MVC tətbiqlərində istifadə olunur
+
+
+
+15. ASP.NET Core-da ControllerBase nə üçündür?
+a) MVC tətbiqlərində istifadə olunan əsas sinifdir
+b) Middleware-ləri idarə edir
+c) Web API üçün istifadə olunan əsas Controller sinifidir +
+d) Yalnız Entity Framework-də istifadə olunur
+
+
+16.ASP.NET Core Web API və ASP.NET Core MVC arasındakı əsas fərqlər hansılardır?
+ASP.NET Core MVC-də Model View anlayışı var, lakin Web API sırf controllerlər üzərindən işləyir. Controllerlər Web API-da ControllerBase-dən götürür MVC də isə Controller-dən.
+
+17.Middleware nədir və ASP.NET Core tətbiqində necə istifadə olunur?
+Middleware-lər request zamanı requestin keçdiyi pipeline-da olan yoxlamalardır. Middleware vasitəsilə action methoduna çatmadan request və response üzərində yoxlamalar aparmağa icazə verir. Authorization Authentication və s. kimi Middleware-lər olur. Öz Middleware-lərimizi də yaza bilərik.
+
+18.Dependency Injection (DI) nədir və ASP.NET Core-da necə işləyir?
+Dependency Injection - class-larda asılılığı konkret tiplərdən abstract tiplərə keçirir. Sadəcə builder.Services.Add(InjectionType)<IInterfaceName, IInterfaceService>(). etməklə inject edirik. Hər hansı bir yerdə interface istifadə olunduqda avtomatik interface-ə bağlı olan classın obyektini yaradır. Əlbəttəki AddScoped, AddTransient, AddSingleton-dan asılı olaraq fərqli formada inject edəcəkdir. 
+
+19.Routing nədir və ASP.NET Core Web API-də necə işləyir?
+Routing endpointlərə çatmaq üçün istifadə olunur. app.UseRouting() middleware-i qoşmaq lazımdır. Routing vasitəsilə endpointlər tanınır yəni http:localhost/users adlı endpointə müraciət edəndə hansı controllerə və action methoda müraciət edəcəyini bildirir.
+
+20.Entity Framework Core-da Migrations nə üçün istifadə olunur və necə işləyir?
+Entity Framework Core-da migration Code-First yanaşması ilə yazdığımız kodları database yaratmaq üçün migrate edir. Entity-lərimizi və lazımi DbContext classımızı yazdıqdan sonra onu builder.Services.AddDbContext-də göstərib connectionStringini vermək lazımdır. Sonra məsələn PM Console-da add-migration "Message" yazmaqla biz öz modelBuilderimizi avtomatik qura bilirik. update-database ilə də verilənlər bazasında o kodları icra edir. Əgər bir neçə dənə DbContext-imiz olarsa -Context ilə hansı DbContext üzərində əməliyyat aparırıq onu göstərməliyik.
+
+21.app.UseDeveloperExceptionPage() metodunun funksiyası nədir?
+App.IsDevelopment() ilə yoxlayıb geri dönüş olaraq development environmentdədir yoxsa yox onu bilə bilərik. app.UseDeveloperExceptionPage() ilə də developer environmenti zamanı çıxan xətaları ayrıca bir səhifədə detallı şəkildə görməyimizə icazə verir. Lakin bunu production vaxtı icazə verməməliyik. İstifadəçilər bizim kodumuzun daxilini bilməməlidir.
+
+22.IActionResult ilə ActionResult<T> arasındakı fərq nədir?
+IActionResult interface-dir ActionResult<T> isə generic classdır. IActionResult interface-inə geri cavablar aiddir yəni Ok(), View(), NoContent() BadRequest() və s. ActionResult ilə isə requestimiz bizə hansı tipdə cavab qaytaracağını göstərir. Məsələn Users adlı HttpGet action methodumuz var və result olaraq IEnumerable<User> tipində nəticə qaytaracaq.
+
+23.Web API-də HttpPost, HttpGet, HttpPut və HttpDelete metodları nə üçün istifadə olunur?
+RESTful API-in əsas prinsiplərindən biridir ki düzgün Http Methodlarından istifadə olunsun. Əgər silmək requestidirsə başlığına HttpDelete yazmalısan və s. yəni methodun görəcəyi işə uyğun Http method qeyd etməlisən. Update üçün HttpPost yox HttpPut yazmalısan. 
+HttpGet - məlumatı əldə etmək üçün
+HttpPost - məlumat göndərmək üçündür. Məlumatlar body üzərindən göndərilir by default.
+HttpPut - məlumat üzərində dəyişiklik etmək üçündür.
+HttpDelete - məlumatı silmək üçündür.
+
+24.Model Validation nədir və ASP.NET Core-da necə tətbiq olunur?
+Model Validation yazdığımız model-in düzgünlüyünü yoxlayır. Məsələn bizdə Firstname adlı property var və bu property [Required] dir. Əgər class yaranan zamanı Firstname yoxdursa boşdursa və Model.IsValid yoxlasaq onda bizə modelin düzgün olmadığını deyəcək. Model Validation ilə hər hansı model üzərində yoxlanışları if lərlə yox elə Data Annotation-larla yoxlamağımız daha rahat və oxunarlıqlı olacaq.
+ModelState.Errors ilə istədiyimiz propertyə xüsusi error message-də əlavə edə bilərik və ya Data Annotationlar zamanı içində error-messagemizi göstərə bilərik.
+
+25.ASP.NET Core-da appsettings.json faylından konfiqurasiyanı necə oxumaq olar?
+builder.Configuration üzərindən oxumaq mümkündür. IConfiguration interface üzərindən oxunulur.
+
+26.REST API-də "Stateless" prinsipinin mənası nədir?
+a) API sorğuları istifadəçinin vəziyyətini (session) saxlamalıdır 
+b) Hər bir sorğu müstəqil olmalı və əvvəlki sorğuların vəziyyətindən asılı olmamalıdır +
+c) API yalnız XML formatında cavab qaytarmalıdır
+d) API yalnız HTTP GET sorğularını dəstəkləməlidir
+
+27.Aşağıdakılardan hansı ideal REST API üçün ən yaxşı təcrübələrdən biridir?
+a) Bütün cavablar HTTP 200 status kodu qaytarmalıdır
+b) Resurslara /getUser, /createUser kimi adlar verilməlidir
+c) HTTP metodları (GET, POST, PUT, DELETE) düzgün istifadə edilməlidir +
+d) Bütün sorğular yalnız POST metodu ilə icra olunmalıdır
+
+28.REST API-də "Cacheable" prinsipinin əsas məqsədi nədir?
+a) API serverinin bütün sorğuları saxlaması və istifadəçilərə köhnə məlumat qaytarması
+b) Müştəri və server arasında əlaqənin hər zaman aktiv qalmasını təmin etmək
+c) Məlumatların tez-tez dəyişmədiyi hallarda sorğuların nəticələrinin saxlanaraq (cache) performansın artırılması +
+d) API-nin təhlükəsizliyini artırmaq üçün şifrələnmiş əlaqə qurmaq
+
+29.Ideal bir REST API üçün URL dizaynı necə olmalıdır?
+a) /users/getUser və /users/deleteUser kimi sorğu növünü göstərən URL-lərdən istifadə edilməlidir
+b) /api/v1/users/123 kimi resurs əsaslı və versiyalanmış URL-lərdən istifadə edilməlidir +
+c) Bütün URL-lər yalnız /data endpointindən ibarət olmalıdır
+d) API URL-lərində mümkün qədər çox query string parametri (?id=123&type=admin) olmalıdır
+
+30.ValidateAntiForgeryToken attribute neye icaze verir?
+ValidateAntiForgeryToken attribute-si bizə imkan verir ki lazımi sorğular ancaq bizim view-dan göndərilsin. Məsələn HttpPost Register adlı Uİ var və bizə lazımdır ki sadəcə ordan gələn sorğunu icra etsin. Ozaman HttpPost üzərində 
+ValidateAntiForgeryToken yazmaqla qıraq resurslardan gələn sorğuların qarşısını alır. Məsələn Postman, digər veb üzərindən gələn sorğu və s. Bu ASP.NET tərəfindən UI hazırlanarkən token generate olunur və HttpPost yenidən tokeni geri göndərir və validate edir.
