@@ -1,0 +1,6 @@
+@CityManagerApp1_HostAddress = http://localhost:5171
+
+GET {{CityManagerApp1_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
