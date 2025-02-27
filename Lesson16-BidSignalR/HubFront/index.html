@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Our SignalR App</h1>
+    <hr/>
+    <h1 id="info" style="color: green;"></h1>
+    <h1 id="disconnectinfo" style="color: red;"></h1>
+    <h1 id="offervalue" style="color: deepskyblue;"></h1>
+    <h1 id="responseOfferValue"></h1>
+    <div>
+        <label for="user">Username</label>
+        <input type="text" name="user" id="user"/>
+    </div>
+    <button id="bidBtn" onclick="IncreaseOffer()" >Bid</button><label id="countDownLabel"></label>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
